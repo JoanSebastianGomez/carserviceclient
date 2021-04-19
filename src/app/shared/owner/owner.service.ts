@@ -16,7 +16,11 @@ export class OwnerService {
   }
 
   getByDni(dni: string) {
-    return this.http.get(this.OWNERS_API + '/findByDni?dni=' + dni);
+    return this.http.get(this.OWNERS_API + '/search/findByDni?dni=' + dni);
+  }
+
+  getOwner(id: string) {
+    return this.http.get(this.OWNERS_API + '/' + id);
   }
 
   post(owner: any) {
