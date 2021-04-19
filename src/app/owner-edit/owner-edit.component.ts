@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OwnerService } from '../shared/owner/owner.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -46,4 +47,39 @@ export class OwnerEditComponent implements OnInit {
     this.router.navigate(['/owner-list']);
   }
 
+  sendForm(form: NgForm) {
+    if (this.create) {
+      this.save(form)
+    } else {
+      this.update(form)
+    }
+  }
+
+  save(form: NgForm) {
+    this.ownerService.post(form).subscribe(
+      result => {
+        this.gotoList();
+      }, error => console.error(error));
+
+  }
+
+  update(form: NgForm) {
+    let link = this.owner._links.self.href;
+    this.ownerService.put(link, form).subscribe(
+      result => {
+        this.gotoList();
+      }, error => console.error(error)
+    );
+
+  }
+
+  delete() {
+    let link = this.owner._links.self.href;
+    this.ownerService.delete(link).subscribe(
+      result => {
+        this.gotoList();
+      }, error => console.error(error)
+    );
+
+  }
 }

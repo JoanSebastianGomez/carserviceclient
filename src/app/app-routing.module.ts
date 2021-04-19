@@ -28,6 +28,9 @@ const routes: Routes = [
   {
     path: 'owner-edit/:dni',
     component: OwnerEditComponent
+  }, {
+    path: 'owner-add',
+    component: OwnerEditComponent
   },
 ];
 
