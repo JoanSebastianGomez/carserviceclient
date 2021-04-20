@@ -1,16 +1,19 @@
 <mat-card>
-    <mat-card-title>Owner List</mat-card-title>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item *ngFor="let owner of owners">
-          <h3 mat-line>Dni: {{owner.dni}}</h3>
-          <h2 mat-line>Profession: {{owner.profession}}</h2>
-          <h2 mat-line>
-            <a mat-button [routerLink]="['/owner-edit', owner.dni]">{{owner.name}}</a>
-          </h2>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  
-    <button mat-fab color="primary" [routerLink]="['/owner-add']">Add</button>
-  </mat-card>
+  <mat-card-title>Owner List</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let owner of owners">
+        <h3 mat-line>Dni: {{owner.dni}}</h3>
+        <h2 mat-line>Profession: {{owner.profession}}</h2>
+        <h2 mat-line>
+          <a mat-button [routerLink]="['/owner-edit', owner.dni]">{{owner.name}}</a>
+        </h2>
+        <input type="checkbox" id={{owner.dni}} value={{owner._links.self.href}}
+          (click)=addToDelete(owner._links.self.href)>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <button mat-fab color="primary" [routerLink]="['/owner-add']">Add</button>
+  <button mat-fab color="primary" (click)=delete()>Delete</button>
+
+</mat-card>
