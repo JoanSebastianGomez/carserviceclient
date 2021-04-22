@@ -55,9 +55,11 @@ export class OwnerEditComponent implements OnInit {
     }
   }
 
-  save(form: NgForm) {
+  save(form: NgForm) {  
     this.ownerService.post(form).subscribe(
       result => {
+        console.log(result);
+        
         this.gotoList();
       }, error => console.error(error));
 
