@@ -1,0 +1,31 @@
+<mat-card>
+    <form #ownerForm="ngForm" (ngSubmit)="sendForm(ownerForm.value)">
+        <mat-card-header>
+            <mat-card-title><h2>{{create ? 'Create' : 'Update'}} Owner</h2></mat-card-title>
+          </mat-card-header>
+          <mat-form-field>
+            <input matInput placeholder="Owner Dni" [(ngModel)]="owner.dni"
+                   required name="dni" #dni>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Owner Name" [(ngModel)]="owner.name"
+                   required name="name" #name>
+          </mat-form-field>
+          <br>
+
+          <mat-form-field>
+            <input matInput placeholder="Owner profession" [(ngModel)]="owner.profession"
+                   required name="profession" #profession>
+          </mat-form-field>
+          <br>
+
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit"
+                    [disabled]="!ownerForm.form.valid">Save</button>
+            <button mat-raised-button color="secondary" (click)="delete()"
+                    *ngIf="!create" type="button">Delete</button>
+            <a mat-button routerLink="/owner-list">Cancel</a>
+          </mat-card-actions>
+    </form>
+</mat-card>
